@@ -1,0 +1,96 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <style type="text/css">
+    <!--
+        body {
+            padding: 0;
+            margin: 20px;
+            background-color: rgb(254, 187, 255);
+            font-family: "comic sans ms";
+        }
+
+        #lovelovelove {
+            display: block;
+            margin: auto;
+        }
+
+        #loveheader {
+            font-size: 40px;
+            text-align: center;
+            width: 100vw;
+            margin: 10px;
+            color: #FF0000;
+        }
+
+        .blink {
+            animation: blink-animation 800ms steps(5, start) infinite;
+            -webkit-animation: blink-animation 800ms steps(5, start) infinite;
+        }
+
+        @keyframes blink-animation {
+            to {
+                visibility: hidden;
+            }
+        }
+
+        @-webkit-keyframes blink-animation {
+            to {
+                visibility: hidden;
+            }
+        }
+    -->
+    </style>
+    <script type="text/javascript">
+    function getTimeRemaining(endtime){
+        var t = Date.parse(endtime) - Date.parse(new Date());
+        var seconds = Math.floor( (t/1000) % 60 );
+        var minutes = Math.floor( (t/1000/60) % 60 );
+        var hours = Math.floor( (t/(1000*60*60)) % 24 );
+        var days = Math.floor( t/(1000*60*60*24) );
+        return {
+            'total': t,
+            'days': days,
+            'hours': hours,
+            'minutes': minutes,
+            'seconds': seconds
+        };
+    }
+
+    function initializeClock(id, endtime){
+        var clock = document.getElementById(id);
+        var timeinterval = setInterval(function() {
+            var t = getTimeRemaining(endtime);
+            clock.innerHTML = t.days + ' dagar, ' +
+                          t.hours + ' timmar, ' +
+                          t.minutes + ' minuter, ' +
+                          t.seconds + ' sekunder';
+            if(t.total <= 0){
+                clearInterval(timeinterval);
+            }
+        }, 1000);
+    }
+
+    function onload() {
+        initializeClock('clockdiv', new Date(Date.parse("2016-07-31 14:00")));
+        toggleColor("#61beb3", "#90a2c6", 1000, 500);
+    }
+
+    function toggleColor(color1, color2, cycleTime, waitTime) {
+        setInterval(function() {
+            document.body.style.backgroundColor = color1;
+            setTimeout(function() {
+                document.body.style.backgroundColor = color2;
+            }, waitTime);
+        }, cycleTime);
+    }
+    </script>
+</head>
+<body onload="onload()">
+    <div id="loveheader">
+        VI ÄLSKAR HENK! <br>
+        <span id="clockdiv" class="blink"> :D :D <3 <3 :D :D</span>
+    </div>
+    <img id="lovelovelove" src="weknow.jpg" alt="we love henk. omg omg omg"/>
+</body>
+</html>
